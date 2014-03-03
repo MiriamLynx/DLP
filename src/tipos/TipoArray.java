@@ -13,4 +13,9 @@ public class TipoArray extends AbstractAst implements Tipo {
 		this.tamaño = tamaño;
 	}
 
+	@Override
+	public String toString() {
+		return "TipoArray [contenido=" + contenido + ", tamaño=" + tamaño + "]";
+	}
+
 }

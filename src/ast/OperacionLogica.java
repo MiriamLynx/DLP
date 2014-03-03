@@ -7,7 +7,7 @@ public class OperacionLogica extends AbstractAst implements Expresion {
 	public String operador;
 
 	public OperacionLogica(int linea, int columna, Expresion izquierda,
-			Expresion derecha, String operador) {
+			String operador, Expresion derecha) {
 		super(linea, columna);
 		this.izquierda = izquierda;
 		this.derecha = derecha;

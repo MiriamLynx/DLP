@@ -1,5 +1,6 @@
 package main;
 
+import sintactico.Parser;
 import introspector.model.IntrospectorModel;
 import introspector.view.IntrospectorTree;
 
@@ -7,7 +8,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import lexico.Lexico;
-import sintactico.Parser;
 
 /**
  * Prueba del analizador léxico.<br/>
@@ -21,28 +21,45 @@ import sintactico.Parser;
 public class Main {
 
 	public static void main(String args[]) throws IOException {
-		if (args.length < 1) {
-			System.err.println("Necesito el archivo de entrada.");
-			return;
-		}
-
-		FileReader fr = null;
+	    if (args.length<1) {
+	        System.err.println("Necesito el archivo de entrada.");
+	        return;
+	    }
+	        
+		FileReader fr=null;
 		try {
-			fr = new FileReader(args[0]);
-		} catch (IOException io) {
-			System.err.println("El archivo " + args[0]
-					+ " no se ha podido abrir.");
+			fr=new FileReader(args[0]);
+		} catch(IOException io) {
+			System.err.println("El archivo "+args[0]+" no se ha podido abrir.");
 			return;
 		}
-
+		
 		Lexico lexico = new Lexico(fr);
 		Parser parser = new Parser(lexico);
-
+		
 		parser.run();
-
-		IntrospectorModel modelo = new IntrospectorModel("Programa", parser.ast);
+		
+		IntrospectorModel modelo = new IntrospectorModel("Programa",
+				parser.ast);
 		new IntrospectorTree("Introspector", modelo);
+		
+		
+//		while(true)
+//		{
+//			...
+//		}
+//		
+//		while(true)
+//			a = 10;
 
+//		int token;
+//		while ((token=lexico.yylex())!=0) {
+//		    System.out.println("Linea: "+lexico.getLinea()+
+//		            ", columna: "+lexico.getColumna()+
+//		            ", token: "+token+
+//		            ", valor semántico: "+parser.getYylval()+".");
+//		}
+		    
 	}
 
 }

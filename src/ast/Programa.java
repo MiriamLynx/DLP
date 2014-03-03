@@ -8,7 +8,7 @@ public class Programa extends AbstractAst implements NodoAST {
 	public List<DefVariable> definiciones;
 	public List<DefVariable> variables;
 
-	public Programa(int linea, int columna, List<Sentencia> sentencias, List<DefVariable> definiciones, List<DefVariable> variables) {
+	public Programa(int linea, int columna, List<DefVariable> variables, List<DefVariable> definiciones, List<Sentencia> sentencias) {
 		super(linea,columna);
 		this.sentencias = sentencias;
 		this.variables = variables;

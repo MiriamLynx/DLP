@@ -37,19 +37,17 @@ public int getColumna() {
 
 // ************  Patrones (macros) ********************
 ConstanteEntera = [0-9]+
-ConstanteReal = ({ConstanteEntera}+ "."{ConstanteEntera}*)|
-				({ConstanteEntera}+ "."{ConstanteEntera}*(((E|e)("+"|"-"){ConstanteEntera}+)))?
-ConstanteString = \"(.)*\"
 ConstanteCaracter = "'"({Letra}|\\n|\\{ConstanteEntera})"'"
+ConstanteReal = ({ConstanteEntera}+ "."{ConstanteEntera}*)|
+				({ConstanteEntera}+ "."{ConstanteEntera}*((E|e)("+"|"-")?{ConstanteEntera}+))?
+ConstanteString = \"(.)*\"
 Letra = [a-zA-ZÒ—]
 Identificador = {Letra}({Letra}|{ConstanteEntera})*
-Tabulacion = \f\t
-SaltosDeLinea = \n\r|\n|\r
-Espacios = [ ]*
-Basura = {Tabulacion}|{SaltosDeLinea}|{Espacios}|{ComentarioVariasLineas}|{ComentarioSimple}
-ComentarioVariasLineas = "/*" ~"*/"
-ComentarioSimple = "\\" .* ~{SaltosDeLinea}
-
+SaltosDeLinea = \r\n|\n|\r
+Espacios = [ \t\f]
+ComentarioSimple = "//" .* {SaltosDeLinea}
+ComentarioVariasLineas = "/*" ~ "*/"
+Basura = {SaltosDeLinea}|{Espacios}|{ComentarioVariasLineas}|{ComentarioSimple}
 
 %%
 // ************  Acciones ********************
@@ -84,6 +82,9 @@ ComentarioSimple = "\\" .* ~{SaltosDeLinea}
 
 "}"|
 
+";"|
+
+","|
 
 "!"|
 
@@ -93,9 +94,6 @@ ComentarioSimple = "\\" .* ~{SaltosDeLinea}
 
 "]"                { parser.setYylval(yytext()); return (int) yycharat(0); }
 
-","                { parser.setYylval(yytext()); return Parser.COMA; }
-
-";"				   { parser.setYylval(yytext()); return Parser.PUNTOYCOMA; }
 
 "<="			   { parser.setYylval(yytext()); return Parser.MENORIGUAL; }
 
@@ -138,4 +136,4 @@ return	           { parser.setYylval(yytext()); return Parser.RETURN; }
 
 {Basura}           {}
 
-.                   { System.err.println("Error Lexico en la linea " + this.getLinea() + " y columna " + this.getColumna());}
+.					{System.err.println("Error lÈxico en la linea: "+ this.getLinea() + ", columna: "+ this.getColumna() +"\nCaracter: '"+yycharat(0)+"' no reconocido");}

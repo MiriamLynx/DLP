@@ -6,7 +6,7 @@ public class Comparacion extends AbstractAst implements Expresion {
 	public Expresion derecha;
 	public String operador;
 	
-	public Comparacion(int linea, int columna, Expresion izquierda, Expresion derecha, String operador){
+	public Comparacion(int linea, int columna, Expresion izquierda, String operador, Expresion derecha){
 		super(linea, columna);
 		this.izquierda = izquierda;
 		this.derecha = derecha;

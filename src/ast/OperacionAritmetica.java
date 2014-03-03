@@ -7,7 +7,7 @@ public class OperacionAritmetica extends AbstractAst implements Expresion {
 	public String operador;
 
 	public OperacionAritmetica(int linea, int columna, Expresion izquierda,
-			Expresion derecha, String operador) {
+			String operador, Expresion derecha) {
 		super(linea, columna);
 		this.izquierda = izquierda;
 		this.derecha = derecha;

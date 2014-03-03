@@ -1,19 +1,42 @@
+char c;
+double a,e;
+char j,k;
+
+// * Funciones
+void p() {}
+
+int f(int n, double r) {
+  double real;
+  char c1, c2;
+  struct {
+    int ent;
+    char car;
+  } miOne;
+  c1 = (char)n;
+  real = c1 + n + r;
+  p(); // * Invocación como sentencia
+return (int)c1;
+}
 
 
-
-
-
-
-
-
-/* Ejemplo de programa de entrada */
-
-int i,e;
-double j;
-int[10] v;
-
+// * Programa principal
 void main() {
-  read i,e;
-  j = -((i-e)/2);
-  write j, v[i];
+  // * Registro
+  struct {
+    int entero;
+    char caracter;
+  } miPar;
+  // * Array
+  double[10][5] vector;
+  i=0;
+  while (miPar.entero >= i) {
+   if (miPar.entero == vector[0][0] && !miPar.caracter)
+      write 'c', 'i', 'e', 'r', 't', 'o', '\n';
+    else 
+      write 'f', 'a', 'l', 's', 'o', '\n';
+      i=i+1;
+  }
+  write f(i, (double)i); // * Invocación como expresión
+  vector[9][(int)4.3]=5.6;
+  f(1, 2.2); // * Invocación como sentencia
 }
