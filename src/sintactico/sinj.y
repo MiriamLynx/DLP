@@ -50,6 +50,7 @@ import ast.*;
 
 %%
 // * Gramática y acciones Yacc
+
 programa: listaDefiniciones VOID MAIN '(' ')' '{' listaCampos listaSentencias '}'	{ this.ast = new Programa(lexico.getLinea(), lexico.getColumna(), (List<DefVariable>)$1, (List<DefVariable>)$7, (List<Sentencia>)$8); }
 
 listaDefiniciones: listaDefiniciones Definicion	{List<Definicion> d = ((List<Definicion>)$1); d.add((Definicion)$2); $$ = d;}
@@ -125,10 +126,6 @@ operacion: expresion '+' expresion		{ $$ = new OperacionAritmetica(lexico.getLin
 argumentos: 				{ $$ = new ArrayList<Expresion>();}
 		| listaExpresiones	{ $$ = $1;}
 		;
-	
-//expresiones: expr 				{ $$ = new ArrayList(); ((List)$$).add($1); }
-//		| expresiones ',' expr	{ ((List)$1).add($3); $$ = $1; }
-//	;
 
 listaSentencias: listaSentencias sentencia	{List<Sentencia> s = (List<Sentencia>)$1; s.add((Sentencia)$2); $$ = s ;}
 				|							{ $$ = new ArrayList<Sentencia>();}
@@ -140,7 +137,6 @@ sentencia:	WRITE listaExpresiones ';'		{ $$ = new Escritura(lexico.getLinea(), l
 		 |	IF '(' expresion ')' cuerpo		{ $$ = new If(lexico.getLinea(), lexico.getColumna(),(Expresion)$3,(List<Sentencia>) $5);}
 		 |	IF '(' expresion ')' cuerpo	ELSE cuerpo		{ $$ = new IfElse(lexico.getLinea(), lexico.getColumna(),(Expresion)$3,(List<Sentencia>) $5,(List<Sentencia>) $7);}
 		 |  RETURN expresion ';'			{ $$ = new Return(lexico.getLinea(), lexico.getColumna(),(Expresion)$2); }
-		// | RETURN ';'						{ $$ = new Return(lexico.getLinea(), lexico.getColumna(),null); }
 		 |	expresion '=' expresion	';'		{ $$ = new Asignacion(lexico.getLinea(), lexico.getColumna(),(Expresion)$1,(Expresion)$3);}
 		 | ID '(' argumentos ')' 	';'		{ $$ = new LlamadaProcedimiento(lexico.getLinea(), lexico.getColumna(),(String)$1,(List<Expresion>)$3);}					
 		;
@@ -148,10 +144,6 @@ sentencia:	WRITE listaExpresiones ';'		{ $$ = new Escritura(lexico.getLinea(), l
 cuerpo: '{'listaSentencias'}'		{$$ = $2;}
 		| sentencia			{List<Sentencia> s = new ArrayList<Sentencia>(); s.add((Sentencia)$1); $$ = s ;}
 		;
-		
-//entonces: ELSE cuerpo			{}
-//		|						{}
-//		;
 
 param: parametros			{ $$ = $1;}
 		|					{ $$ = new ArrayList<DefVariable>();}
