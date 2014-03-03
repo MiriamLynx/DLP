@@ -13,29 +13,29 @@ import ast.*;
 %}
 
 // * Definiciones Yacc
-%token ID
 %token CTE_ENTERA
-%token CTE_CARACTER
 %token CTE_REAL
+%token CTE_CARACTER
 %token CTE_STRING
-%token STRUCT
-%token CHAR
-%token DOUBLE
-%token INT
-%token DISTINTO
-%token IGUAL
-%token MAYORIGUAL
-%token MENORIGUAL
-%token AND
-%token OR
-%token IF
-%token ELSE
-%token WHILE
+%token ID
 %token MAIN
 %token VOID
-%token RETURN
-%token WRITE
+%token INT
+%token CHAR
+%token DOUBLE
+%token WHILE
+%token IF
+%token ELSE
 %token READ
+%token WRITE
+%token AND
+%token DISTINTO
+%token MAYORIGUAL
+%token STRUCT
+%token RETURN
+%token MENORIGUAL
+%token OR
+%token IGUAL
 
 %right '='
 %left AND OR '!'
