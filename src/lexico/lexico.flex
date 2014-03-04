@@ -37,11 +37,11 @@ public int getColumna() {
 
 // ************  Patrones (macros) ********************
 ConstanteEntera = [0-9]+
-ConstanteCaracter = "'"({Letra}|\\n|\\{ConstanteEntera})"'"
+ConstanteCaracter = "'"({Letra}|\\n|\\{ConstanteEntera}|[+-*/%';,<>=!¡{}.:])"'"
 ConstanteReal = ({ConstanteEntera}+ "."{ConstanteEntera}*)|
 				({ConstanteEntera}+ "."{ConstanteEntera}*((E|e)("+"|"-")?{ConstanteEntera}+))?
 ConstanteString = \"(.)*\"
-Letra = [a-zA-ZñÑ]
+Letra = [a-zA-ZñÑàèìòùáéíóúÁÉÍÓÚÀÈÌÒÙäëïöüâêîôûÂÊÎÔÛ]
 Identificador = {Letra}({Letra}|{ConstanteEntera})*
 SaltosDeLinea = \r\n|\n|\r
 Espacios = [ \t\f]
